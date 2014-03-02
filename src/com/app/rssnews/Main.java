@@ -1,5 +1,7 @@
 package com.app.rssnews;
 
+import java.util.Vector;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.res.Configuration;
@@ -24,6 +26,12 @@ public class Main extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Vector<String> rssList = new Vector<String>();
+		for (int i= 0; i<10; i++) {
+			rssList.add("Channel Name "+Integer.toString(i));
+		}
+
 		
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -61,6 +69,10 @@ public class Main extends Activity {
 
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        
+        ListView channelsListView = (ListView) findViewById(R.id.rss_channels_view);
+        channelsListView.setAdapter(new ChannelAdapter(this, rssList));
+	
 	}
 	
 
@@ -102,6 +114,7 @@ public class Main extends Activity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menu.findItem(R.id.action_addchannel).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
     

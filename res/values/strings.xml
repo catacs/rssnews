@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">rssnews</string>
+    <string name="app_name">RSSNews</string>
     <string name="title_activity_main">Main</string>
     <string name="action_settings">Settings</string>
     <string-array name="menu_array">
@@ -12,5 +12,7 @@
     </string-array>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="default_channel_name">Default channel name</string>
+    <string name="empty"></string>
 
 </resources>
