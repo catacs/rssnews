@@ -4,6 +4,8 @@ import java.util.Vector;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Main extends Activity {
 	private String[] mMenuList;
@@ -21,17 +24,12 @@ public class Main extends Activity {
 	private DrawerLayout mDrawerLayout;
 	private CharSequence mDrawerTitle;
     private CharSequence mTitle;
+    private Storage mStorage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		Vector<String> rssList = new Vector<String>();
-		for (int i= 0; i<10; i++) {
-			rssList.add("Channel Name "+Integer.toString(i));
-		}
-
 		
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -71,7 +69,7 @@ public class Main extends Activity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         
         ListView channelsListView = (ListView) findViewById(R.id.rss_channels_view);
-        channelsListView.setAdapter(new ChannelAdapter(this, rssList));
+        channelsListView.setAdapter(new ChannelAdapter(this, new Storage(getApplicationContext())));
 	
 	}
 	
@@ -80,11 +78,24 @@ public class Main extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
          // The action bar home/up action should open or close the drawer.
          // ActionBarDrawerToggle will take care of this.
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+    	if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         // Handle action buttons
-        return super.onOptionsItemSelected(item);
+        switch(item.getItemId()) {
+        case R.id.action_addchannel:
+        	 /*
+        	 DialogFragment dialog = new AddChannelDialogFragment();
+             dialog.show(getFragmentManager(), "AddChannelDialogFragment");
+             */
+            ListView channelsListView = (ListView) findViewById(R.id.rss_channels_view);
+            ChannelAdapter channels = (ChannelAdapter) channelsListView.getAdapter();
+        	channels.addItem("Testing add button");
+            Toast.makeText(this, R.string.default_channel_name, Toast.LENGTH_LONG).show();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
 
     }
 	

@@ -13,22 +13,22 @@ import android.widget.TextView;
 public class ChannelAdapter extends BaseAdapter {
 
 	private final Activity m_activity;
-	private final Vector<String> m_list;
+	private Storage m_storage;
 	
 	
-	public ChannelAdapter(Activity activity, Vector<String> list) {
+	public ChannelAdapter(Activity activity, Storage db) {
 		this.m_activity = activity;
-		this.m_list = list;
+		this.m_storage =  db;
 	}
 	
 	@Override
 	public int getCount() {
-		return m_list.size();
+		return m_storage.getChannelsList().size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		m_list.elementAt(position);
+		m_storage.getChannelsList().elementAt(position);
 		return null;
 	}
 
@@ -43,10 +43,15 @@ public class ChannelAdapter extends BaseAdapter {
          View view = inflater.inflate(R.layout.channel_view, null, true);
          
          TextView textView =(TextView)view.findViewById(R.id.channelName);
-         textView.setText(m_list.elementAt(position));
+         textView.setText(m_storage.getChannelsList().elementAt(position));
          ImageView imageView=(ImageView)view.findViewById(R.id.channelIcon);
          imageView.setImageResource(R.drawable.ic_launcher);
          return view;
 	}
-
+	
+	public void addItem(String name) {
+		m_storage.addChannel(name);
+		notifyDataSetChanged();
+		
+	}
 }
