@@ -6,6 +6,9 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddChannelDialogFragment extends DialogFragment {
 	@Override
@@ -17,11 +20,14 @@ public class AddChannelDialogFragment extends DialogFragment {
 	    // Inflate and set the layout for the dialog
 	    // Pass null as the parent view because its going in the dialog layout
 	    builder.setView(inflater.inflate(R.layout.add_channel, null))
-	    // Add action buttons
+	    		// Add action buttons
 	           .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
 	               @Override
 	               public void onClick(DialogInterface dialog, int id) {
-	                   // sign in the user ...
+	            	   Dialog f = (Dialog) dialog;
+	                   EditText edit = (EditText)  f.findViewById(R.id.newChannel);
+	                   Toast.makeText(f.getContext(), edit.getText().toString(), Toast.LENGTH_LONG).show();
+
 	               }
 	           })
 	           .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

@@ -70,7 +70,6 @@ public class Main extends Activity {
         
         ListView channelsListView = (ListView) findViewById(R.id.rss_channels_view);
         channelsListView.setAdapter(new ChannelAdapter(this, new Storage(getApplicationContext())));
-	
 	}
 	
 
@@ -84,19 +83,17 @@ public class Main extends Activity {
         // Handle action buttons
         switch(item.getItemId()) {
         case R.id.action_addchannel:
-        	 /*
-        	 DialogFragment dialog = new AddChannelDialogFragment();
-             dialog.show(getFragmentManager(), "AddChannelDialogFragment");
-             */
-            ListView channelsListView = (ListView) findViewById(R.id.rss_channels_view);
-            ChannelAdapter channels = (ChannelAdapter) channelsListView.getAdapter();
-        	channels.addItem("Testing add button");
-            Toast.makeText(this, R.string.default_channel_name, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, AddChannelActivity.class);
+            startActivity(intent);
             return true;
         default:
             return super.onOptionsItemSelected(item);
         }
 
+    }
+    
+    public void onAddNewChannel(String channel){
+    	
     }
 	
     @Override

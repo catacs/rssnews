@@ -7,13 +7,22 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-	    <activity android:name="Main"
+	    <activity android:name="com.app.rssnews.Main"
 	              android:label="@string/app_name">
 	        <intent-filter>
 	            <action android:name="android.intent.action.MAIN" />
 	            <category android:name="android.intent.category.LAUNCHER" />
 	        </intent-filter>
 	    </activity>
+	    <activity
+        android:name="com.app.rssnews.AddChannelActivity"
+        android:label="@string/app_name"
+        android:parentActivityName="Main" >
+        <!-- Parent activity meta-data to support API level 7+ -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.app.rssnews.Main" />
+    </activity>
 	</application>
 
 </manifest>

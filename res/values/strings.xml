@@ -16,5 +16,6 @@
     <string name="empty"></string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
+    <string name="addChannelText">Add new channel</string>
 
 </resources>
