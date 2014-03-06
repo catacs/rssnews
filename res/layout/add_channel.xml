@@ -1,21 +1,35 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:gravity="fill_horizontal"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/addChannelName"
+    <Button
+        android:id="@+id/saveUrlButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/addChannelText" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Space3"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:text="@string/saveUrl" />
+
+    <Space
+        android:id="@+id/Space3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:id="@+id/newChannel"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="195dp"
+        android:ems="10"
+        android:hint="@string/addUrlText"
         android:inputType="textEmailAddress" />
 
-</LinearLayout>
+</RelativeLayout>

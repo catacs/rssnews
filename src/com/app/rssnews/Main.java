@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class Main extends Activity {
 	private String[] mMenuList;
@@ -29,7 +28,7 @@ public class Main extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.main);
 		
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);

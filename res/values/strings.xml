@@ -17,5 +17,9 @@
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
     <string name="addChannelText">Add new channel</string>
+    <string name="addUrlText">"Rss Url "</string>
+    <string name="saveUrl">Save</string>
+    <string name="default_feed_title">Default feed title</string>
+    <string name="feed_icon_description">Feed icon description</string>
 
 </resources>

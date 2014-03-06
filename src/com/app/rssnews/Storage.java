@@ -47,5 +47,9 @@ public class Storage extends SQLiteOpenHelper{
 	public Vector<String> getChannelsList() {
 		return m_list;
 	}
+	
+	public Vector<String> getFeedsList() {
+		return m_list;
+	}
 
 }
