@@ -7,7 +7,7 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-	    <activity android:name="com.app.rssnews.Main"
+	    <activity android:name="com.app.rssnews.activity.Main"
 	              android:label="@string/app_name">
 	        <intent-filter>
 	            <action android:name="android.intent.action.MAIN" />
@@ -15,7 +15,7 @@
 	        </intent-filter>
 	    </activity>
 	    <activity
-        android:name="com.app.rssnews.AddChannelActivity"
+        android:name="com.app.rssnews.activity.AddChannelActivity"
         android:label="@string/app_name"
         android:parentActivityName="Main" >
         <!-- Parent activity meta-data to support API level 7+ -->
@@ -23,6 +23,10 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.app.rssnews.Main" />
     </activity>
+    <provider
+      android:name=".contentprovider.ChannelContentProvider"
+      android:authorities="de.vogella.android.todos.contentprovider" >
+   </provider>
 	</application>
 
 </manifest>

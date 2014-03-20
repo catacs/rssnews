@@ -1,4 +1,7 @@
-package com.app.rssnews;
+package com.app.rssnews.activity;
+
+import com.app.rssnews.R;
+import com.app.rssnews.R.layout;
 
 import android.app.ActionBar;
 import android.app.Activity;

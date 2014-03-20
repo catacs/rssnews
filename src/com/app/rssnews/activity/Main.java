@@ -1,6 +1,17 @@
-package com.app.rssnews;
+package com.app.rssnews.activity;
 
 import java.util.Vector;
+
+import com.app.rssnews.R;
+import com.app.rssnews.R.array;
+import com.app.rssnews.R.drawable;
+import com.app.rssnews.R.id;
+import com.app.rssnews.R.layout;
+import com.app.rssnews.R.menu;
+import com.app.rssnews.R.string;
+import com.app.rssnews.adapter.ChannelAdapter;
+import com.app.rssnews.db.Storage;
+import com.app.rssnews.listener.DrawerItemClickListener;
 
 import android.os.Bundle;
 import android.app.Activity;

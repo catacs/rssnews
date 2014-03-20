@@ -1,4 +1,9 @@
-package com.app.rssnews;
+package com.app.rssnews.activity;
+
+import com.app.rssnews.R;
+import com.app.rssnews.R.layout;
+import com.app.rssnews.adapter.FeedAdapter;
+import com.app.rssnews.db.Storage;
 
 import android.app.Activity;
 import android.os.Bundle;

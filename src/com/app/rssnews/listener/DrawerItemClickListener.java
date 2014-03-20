@@ -1,4 +1,4 @@
-package com.app.rssnews;
+package com.app.rssnews.listener;
 
 import android.view.View;
 import android.widget.ListView;
