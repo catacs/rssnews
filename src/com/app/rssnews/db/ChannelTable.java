@@ -7,7 +7,7 @@ public class ChannelTable {
 	  public static final String TABLE_NAME = "Channel";
 	  public static final String KEY_NAME = "name";
 	  public static final String KEY_URL = "url";
-	  public static final String KEY_ID = "id";
+	  public static final String KEY_ID = "_id";
 	    
 	  // Database creation SQL statement
 	  private static final String TABLE_CREATE = "create table " 
@@ -15,7 +15,7 @@ public class ChannelTable {
 	      + "(" 
 	      + KEY_ID + " integer primary key autoincrement, " 
 	      + KEY_URL + " text not null, " 
-	      + KEY_NAME + " text not null," 
+	      + KEY_NAME + " text not null " 
 	      + ");";
 
 	  public static void onCreate(SQLiteDatabase database) {

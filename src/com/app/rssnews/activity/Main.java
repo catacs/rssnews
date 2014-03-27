@@ -1,7 +1,5 @@
 package com.app.rssnews.activity;
 
-import java.util.Vector;
-
 import com.app.rssnews.R;
 import com.app.rssnews.R.array;
 import com.app.rssnews.R.drawable;
@@ -10,16 +8,22 @@ import com.app.rssnews.R.layout;
 import com.app.rssnews.R.menu;
 import com.app.rssnews.R.string;
 import com.app.rssnews.adapter.ChannelAdapter;
+import com.app.rssnews.db.ChannelTable;
 import com.app.rssnews.db.Storage;
 import com.app.rssnews.listener.DrawerItemClickListener;
+import com.app.rssnews.provider.ChannelContentProvider;
 
+import android.app.LoaderManager;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.DialogFragment;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,20 +31,27 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class Main extends Activity {
+public class Main extends ListActivity implements
+	LoaderManager.LoaderCallbacks<Cursor> {
+	
 	private String[] mMenuList;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private DrawerLayout mDrawerLayout;
 	private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private Storage mStorage;
+
+    // private Cursor cursor;
+    private SimpleCursorAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
+		this.getListView().setDividerHeight(2);
+	    fillData();
+	    registerForContextMenu(getListView());
+	    
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 	
@@ -77,13 +88,24 @@ public class Main extends Activity {
 
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        
-        ListView channelsListView = (ListView) findViewById(R.id.rss_channels_view);
-        channelsListView.setAdapter(new ChannelAdapter(this, new Storage(getApplicationContext())));
-	}
+   }
 	
 
-    @Override
+    private void fillData() {
+        // Fields from the database (projection)
+        // Must include the _id column for the adapter to work
+        String[] from = new String[] { ChannelTable.KEY_NAME };
+        // Fields on the UI to which we map
+        int[] to = new int[] { R.id.channelName};
+
+        getLoaderManager().initLoader(0, null, this);
+        adapter = new SimpleCursorAdapter(this, R.layout.channel_item, null, from,
+            to, 0);
+        setListAdapter(adapter);
+	}
+
+
+	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
          // The action bar home/up action should open or close the drawer.
          // ActionBarDrawerToggle will take care of this.
@@ -139,8 +161,30 @@ public class Main extends Activity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggls
+        // Pass any configuration change to the drawer toggles
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+	    String[] projection = { ChannelTable.KEY_ID, ChannelTable.KEY_NAME };
+	    CursorLoader cursorLoader = new CursorLoader(this,
+	        ChannelContentProvider.CONTENT_URI, projection, null, null, null);
+	    return cursorLoader;
+	}
+
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+		adapter.swapCursor(data);
+	}
+
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+		// data is not available anymore, delete reference
+	    adapter.swapCursor(null);
+	}
 
 }

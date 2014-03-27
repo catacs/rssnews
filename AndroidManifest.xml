@@ -21,11 +21,11 @@
         <!-- Parent activity meta-data to support API level 7+ -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.app.rssnews.Main" />
+            android:value="com.app.rssnews.activity.Main" />
     </activity>
     <provider
-      android:name=".contentprovider.ChannelContentProvider"
-      android:authorities="de.vogella.android.todos.contentprovider" >
+      android:name="com.app.rssnews.provider.ChannelContentProvider"
+      android:authorities="com.app.rssnews.channel.contentprovider" >
    </provider>
 	</application>
 

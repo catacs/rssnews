@@ -1,22 +1,40 @@
 package com.app.rssnews.activity;
 
 import com.app.rssnews.R;
-import com.app.rssnews.R.layout;
+import com.app.rssnews.db.ChannelTable;
+import com.app.rssnews.provider.ChannelContentProvider;
 
-import android.app.ActionBar;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class AddChannelActivity extends Activity {
+		
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_channel);
         
         getActionBar().setDisplayHomeAsUpEnabled(true);
+               
+        final Button button = (Button) findViewById(R.id.saveUrlButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	EditText mEdit   = (EditText)findViewById(R.id.newChannel);
+
+                ContentValues values = new ContentValues();
+                values.put(ChannelTable.KEY_NAME, mEdit.getText().toString());
+                values.put(ChannelTable.KEY_URL, mEdit.getText().toString());
+                getContentResolver().insert(ChannelContentProvider.CONTENT_URI, values);
+                finish();
+            }
+        });
     }
 	
 	@Override

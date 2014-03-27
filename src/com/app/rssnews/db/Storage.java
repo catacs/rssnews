@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class Storage extends SQLiteOpenHelper{
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "RssNews.db";
 
 	public Storage(Context context) {
@@ -23,13 +23,12 @@ public class Storage extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		ChannelTable.onCreate(db);
-		ItemTable.onCreate(db);
-		
+		//ItemTable.onCreate(db);	
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		ChannelTable.onUpgrade(db, oldVersion, newVersion);
-		ItemTable.onUpgrade(db, oldVersion, newVersion);
+		//ItemTable.onUpgrade(db, oldVersion, newVersion);
 	}
 }

@@ -7,14 +7,14 @@ import android.util.Log;
 public class ItemTable {
     public static final String TABLE_NAME="feed";
     public static final String KEY_TITLE="name";
-    public static final String KEY_ID="id";
+    public static final String KEY_ID="_id";
     
     // Database creation SQL statement
 	private static final String TABLE_CREATE = "create table "
 	      + TABLE_NAME
 	      + "("
 	      + KEY_ID + " integer primary key autoincrement, "
-	      + KEY_TITLE + " text not null, " 
+	      + KEY_TITLE + " text not null" 
 	      + ");";
 
 	public static void onCreate(SQLiteDatabase database) {
