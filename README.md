@@ -1,4 +1,4 @@
-rssnews
+RSSNews
 =======
 
-Simple RSS Reader
+Simple RSS Reader web page
